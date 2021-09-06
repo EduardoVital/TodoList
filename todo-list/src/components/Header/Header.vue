@@ -8,10 +8,12 @@
       <img src="../../assets/images/icons/icon-moon.svg" alt="icon moon">
     </div>
   </div>
-  <div class="task">
-    <input type="checkbox">
-    <input class="input-task" type="text">
+  <!-- Transformar em componente -->
+  <div class="create-task">
+    <button class="checkbox"></button>
+    <input class="input-text" type="text" placeholder="Create a new todo...">
   </div>
+  <!--  -->
   </section>
 </template>
 
@@ -27,7 +29,7 @@ export default {
   background-image: url('../../assets/images/bg-desktop-light.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
-  height: 300px;
+  height: 600px;
 }
 .flexbox {
   display: flex;
@@ -43,17 +45,32 @@ export default {
   }
 }
 
-.task {
+.create-task {
   max-width: 484px;
   margin: 0 auto;
   width: 100%;
   background: white;
-  padding: 20px;
-  box-shadow: 2px 0px 10px black;
+  padding: 15px;
   border-radius: 5px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
+  .input-text {
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font: 16px "Poppins", Arial, sans-serif;
+    color: var(--gray-placeholder);
+  }
+
+  .checkbox {
+    background-color: transparent;
+    padding: 12px;
+    border-radius: 50%;
+    border: 1px solid var(--gray);
+    margin-right: 10px;
+  }
 }
 </style>

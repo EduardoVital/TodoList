@@ -9,17 +9,19 @@
     </div>
   </div>
   <!-- Transformar em componente -->
-  <div class="create-task">
-    <button class="checkbox"></button>
-    <input class="input-text" type="text" placeholder="Create a new todo...">
-  </div>
+  <CreateTask />
   <!--  -->
   </section>
 </template>
 
 <script>
+import CreateTask from '../CreateTask/CreateTask.vue';
+
 export default {
   name: 'Header',
+  components: {
+    CreateTask,
+  },
 };
 </script>
 
@@ -39,38 +41,9 @@ export default {
   h1 {
     text-transform: uppercase;
     color: var(--text-white);
-    letter-spacing: 15px;
-    font-size: 36px;
-    font-weight: bold;
-  }
-}
-
-.create-task {
-  max-width: 484px;
-  margin: 0 auto;
-  width: 100%;
-  background: white;
-  padding: 15px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  .input-text {
-    width: 100%;
-    outline: none;
-    border: none;
-    font-size: 16px;
-    font: 16px "Poppins", Arial, sans-serif;
-    color: var(--gray-placeholder);
-  }
-
-  .checkbox {
-    background-color: transparent;
-    padding: 12px;
-    border-radius: 50%;
-    border: 1px solid var(--gray);
-    margin-right: 10px;
+    letter-spacing: 10px;
+    font-size: 40px;
+    font-weight: 700;
   }
 }
 </style>

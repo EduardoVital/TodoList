@@ -1,5 +1,5 @@
 <template>
-    <button class="checkmark"></button>
+  <button class="checkmark"></button>
 </template>
 
 <script>
@@ -10,10 +10,10 @@ export default {
 
 <style scoped lang="scss">
 .checkmark {
-    background-color: transparent;
-    padding: 12px;
-    border-radius: 50%;
-    border: 1px solid var(--gray);
-    margin-right: 10px;
+  background-color: transparent;
+  padding: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--gray);
+  margin-right: 10px;
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
-  <Header msg="Welcome to Your Vue.js App"/>
+  <Index />
 </template>
 
 <script>
-import Header from './components/Header/Header.vue';
+import Index from './index.vue';
 
 export default {
   name: 'App',
   components: {
-    Header,
+    Index,
   },
 };
 </script>

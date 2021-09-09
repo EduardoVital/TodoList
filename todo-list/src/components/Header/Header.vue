@@ -8,9 +8,7 @@
       <img src="../../assets/images/icons/icon-moon.svg" alt="icon moon">
     </div>
   </div>
-  <!-- Transformar em componente -->
   <CreateTask />
-  <!--  -->
   </section>
 </template>
 
@@ -30,8 +28,8 @@ export default {
 .bg {
   background-image: url('../../assets/images/bg-desktop-light.jpg');
   background-repeat: no-repeat;
-  background-size: 100%;
-  height: 600px;
+  background-size: cover;
+  padding-bottom: 50px;
 }
 .flexbox {
   display: flex;

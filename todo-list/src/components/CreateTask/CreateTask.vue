@@ -1,8 +1,8 @@
 <template>
-    <div class="create-task">
-        <Button />
-        <Input text="Create a new todo..."/>
-    </div>
+  <div class="create-task">
+    <Button />
+    <Input text="Create a new todo..."/>
+  </div>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ export default {
   max-width: 484px;
   margin: 0 auto;
   width: 100%;
-  background: white;
+  background: var(--text-white);
   padding: 15px;
   border-radius: 5px;
   display: flex;

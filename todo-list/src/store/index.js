@@ -2,32 +2,16 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    todolist: [
-      {
-        title: 'Javascript',
-        id: 1,
-        isActive: false,
-      },
-      {
-        title: 'CSS',
-        id: 2,
-        isActive: false,
-      },
-      {
-        title: 'HTML',
-        id: 3,
-        isActive: false,
-      },
-    ],
+    todolist: [],
   },
   mutations: {
-    SET_TODOLIST(state, payload) {
-      state.todolist = payload;
+    SET_TODOLIST(state, newTask) {
+      state.todolist = [...state.todolist, newTask];
     },
   },
   actions: {
-    setTodoList({ commit }, payload) {
-      commit('SET_TODOLIST', payload);
+    setTodoList({ commit }, newTask) {
+      commit('SET_TODOLIST', newTask);
     },
   },
   getters: {

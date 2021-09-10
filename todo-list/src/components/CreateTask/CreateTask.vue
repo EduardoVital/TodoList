@@ -1,7 +1,7 @@
 <template>
   <div class="create-task">
     <Button />
-    <input class="input-text" type="text" placeholder="Creating a new todo..." v-on:keyup.enter="handleCreateNewTask" />
+    <input class="input-text" type="text" v-model="task" placeholder="Creating a new todo..." v-on:keyup.enter="handleCreateNewTask" />
   </div>
 </template>
 
@@ -21,8 +21,7 @@ export default {
   },
   methods: {
     ...mapActions(['setTodoList']),
-    handleCreateNewTask(e) {
-      this.task = e.target.value;
+    handleCreateNewTask() {
       const randomId = Math.floor(Math.random() * 1000);
       const newTask = {
         id: randomId,
@@ -30,14 +29,14 @@ export default {
         isActive: false,
       };
 
-      // if (!this.task) {
-      //   return;
-      // }
+      if (!this.task) {
+        return;
+      }
 
-      this.setTodoList = [...this.setTodoList, newTask];
+      this.setTodoList(newTask);
 
-      // this.task = '';
-      // this.isActive = false;
+      this.task = '';
+      this.isActive = false;
     },
   },
 };

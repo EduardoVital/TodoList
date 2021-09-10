@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Button from '../Button/Button.vue';
 import Input from '../Input/Input.vue';
 
@@ -14,6 +15,36 @@ export default {
   components: {
     Button,
     Input,
+  },
+  data() {
+    return {
+      task: '',
+    };
+  },
+  computed: {
+    ...mapGetters([
+      'getTodoList',
+    ]),
+  },
+  methods: {
+    handleCreateNewTask() {
+      const randomId = Math.floor(Math.random() * 1000);
+      const newTask = {
+        id: randomId,
+        title: this.task,
+        isActive: false,
+      };
+
+      if (!this.task) {
+        // eslint-disable-next-line no-useless-return
+        return;
+      }
+
+      this.getTodoList = [...this.getTodoList, newTask];
+
+      this.task = '';
+      this.isActive = false;
+    },
   },
 };
 </script>

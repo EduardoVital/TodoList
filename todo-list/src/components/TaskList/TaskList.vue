@@ -1,14 +1,15 @@
 <template>
   <section>
-    <div class="container-task">
+    <div v-for="task in getTodoList" :key="task.id" class="container-task">
       <Button />
-      <span>Algum texto</span>
+      <span>{{ task.title }}</span>
     </div>
     <FooterTaskList />
   </section>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import Button from '../Button/Button.vue';
 import FooterTaskList from '../FooterTaskList/FooterTaskList.vue';
 
@@ -17,6 +18,16 @@ export default {
   components: {
     Button,
     FooterTaskList,
+  },
+  computed: {
+    ...mapGetters([
+      'getTodoList',
+    ]),
+  },
+  methdos: {
+    ...mapActions([
+      'actionTodoList',
+    ]),
   },
 };
 </script>

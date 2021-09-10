@@ -1,33 +1,28 @@
 <template>
   <div class="create-task">
     <Button />
-    <Input text="Create a new todo..."/>
+    <input class="input-text" type="text" placeholder="Creating a new todo..." v-on:keyup.enter="handleCreateNewTask" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 import Button from '../Button/Button.vue';
-import Input from '../Input/Input.vue';
 
 export default {
   name: 'Header',
   components: {
     Button,
-    Input,
   },
   data() {
     return {
       task: '',
     };
   },
-  computed: {
-    ...mapGetters([
-      'getTodoList',
-    ]),
-  },
   methods: {
-    handleCreateNewTask() {
+    ...mapActions(['setTodoList']),
+    handleCreateNewTask(e) {
+      this.task = e.target.value;
       const randomId = Math.floor(Math.random() * 1000);
       const newTask = {
         id: randomId,
@@ -35,15 +30,14 @@ export default {
         isActive: false,
       };
 
-      if (!this.task) {
-        // eslint-disable-next-line no-useless-return
-        return;
-      }
+      // if (!this.task) {
+      //   return;
+      // }
 
-      this.getTodoList = [...this.getTodoList, newTask];
+      this.setTodoList = [...this.setTodoList, newTask];
 
-      this.task = '';
-      this.isActive = false;
+      // this.task = '';
+      // this.isActive = false;
     },
   },
 };
@@ -60,5 +54,15 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  .input-text {
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font: 16px 'Josefin Sans', sans-serif;
+    color: var(--gray-placeholder);
+    background: var(--text-white);
+  }
 }
 </style>

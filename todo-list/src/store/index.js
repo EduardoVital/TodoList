@@ -21,13 +21,13 @@ export default createStore({
     ],
   },
   mutations: {
-    SET_TODOLIST(state) {
-      return state.todolist;
+    SET_TODOLIST(state, payload) {
+      state.todolist = payload;
     },
   },
   actions: {
-    actionTodoList({ commit }) {
-      commit('SET_TODOLIST');
+    setTodoList({ commit }, payload) {
+      commit('SET_TODOLIST', payload);
     },
   },
   getters: {

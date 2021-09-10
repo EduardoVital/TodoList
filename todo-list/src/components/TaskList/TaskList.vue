@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import Button from '../Button/Button.vue';
 import FooterTaskList from '../FooterTaskList/FooterTaskList.vue';
 
@@ -22,11 +22,6 @@ export default {
   computed: {
     ...mapGetters([
       'getTodoList',
-    ]),
-  },
-  methdos: {
-    ...mapActions([
-      'actionTodoList',
     ]),
   },
 };

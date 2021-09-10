@@ -1,28 +1,42 @@
 <template>
   <section>
     <div v-for="task in getTodoList" :key="task.id" class="container-task">
-      <Button />
+      <button class="checkmark" @click="handleSetTaskIsCompleted(task.id)"></button>
       <span>{{ task.title }}</span>
+      <button class="remove" @click="handleRemoveTask(task.id)">Remover</button>
     </div>
     <FooterTaskList />
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import Button from '../Button/Button.vue';
+import { mapGetters, mapActions } from 'vuex';
 import FooterTaskList from '../FooterTaskList/FooterTaskList.vue';
 
 export default {
   name: 'TaskList',
   components: {
-    Button,
     FooterTaskList,
   },
   computed: {
     ...mapGetters([
       'getTodoList',
     ]),
+  },
+  methods: {
+    ...mapActions(['setRemoveTask']),
+    handleRemoveTask(id) {
+      this.setRemoveTask(id);
+    },
+
+    handleSetTaskIsCompleted(id) {
+      const getStatusIsCompleted = this.getTodoList.map((task) => (task.id === id ? {
+        ...this.getTodoList,
+        isCompleted: !this.getTodoList.isCompleted,
+      } : this.getTodoList));
+
+      this.getTodoList = (getStatusIsCompleted);
+    },
   },
 };
 </script>
@@ -47,6 +61,11 @@ section {
 
     span {
       color: var(--gray-placeholder);
+      // text-decoration: line-through
+    }
+
+    .remove {
+      margin-left: auto;
     }
   }
 }

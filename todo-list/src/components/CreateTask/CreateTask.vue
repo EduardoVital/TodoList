@@ -1,19 +1,15 @@
 <template>
   <div class="create-task">
-    <Button />
+    <button class="checkmark"></button>
     <input class="input-text" type="text" v-model="task" placeholder="Creating a new todo..." v-on:keyup.enter="handleCreateNewTask" />
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import Button from '../Button/Button.vue';
 
 export default {
   name: 'Header',
-  components: {
-    Button,
-  },
   data() {
     return {
       task: '',
@@ -26,7 +22,7 @@ export default {
       const newTask = {
         id: randomId,
         title: this.task,
-        isActive: false,
+        isCompleted: false,
       };
 
       if (!this.task) {

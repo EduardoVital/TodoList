@@ -12,6 +12,13 @@ export default createStore({
       const removeItem = state.todolist.filter((item) => item.id !== removeTask);
       state.todolist = [...removeItem];
     },
+    SET_CHANGE_STATUS(state, isCompleted) {
+      const getStatusIsCompleted = state.todolist.map((task) => (task.id === isCompleted ? {
+        ...task,
+        isCompleted: !task.isCompleted,
+      } : task));
+      state.todolist = (getStatusIsCompleted);
+    },
   },
   actions: {
     setTodoList({ commit }, newTask) {
@@ -19,6 +26,9 @@ export default createStore({
     },
     setRemoveTask({ commit }, removeTask) {
       commit('SET_REMOVE_TASK', removeTask);
+    },
+    setChangeStatus({ commit }, isCompleted) {
+      commit('SET_CHANGE_STATUS', isCompleted);
     },
   },
   getters: {

@@ -1,8 +1,8 @@
 <template>
   <section>
     <div v-for="task in getTodoList" :key="task.id" class="container-task">
-      <button class="checkmark" @click="handleSetTaskIsCompleted(task.id)"></button>
-      <span>{{ task.title }}</span>
+      <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)"></button>
+      <span v-bind:class="[task.isCompleted ? 'isCompleted' : '']">{{ task.title }}</span>
       <button class="remove" @click="handleRemoveTask(task.id)">Remover</button>
     </div>
     <FooterTaskList />
@@ -24,18 +24,13 @@ export default {
     ]),
   },
   methods: {
-    ...mapActions(['setRemoveTask']),
+    ...mapActions(['setRemoveTask', 'setChangeStatus']),
     handleRemoveTask(id) {
       this.setRemoveTask(id);
     },
 
     handleSetTaskIsCompleted(id) {
-      const getStatusIsCompleted = this.getTodoList.map((task) => (task.id === id ? {
-        ...this.getTodoList,
-        isCompleted: !this.getTodoList.isCompleted,
-      } : this.getTodoList));
-
-      this.getTodoList = (getStatusIsCompleted);
+      this.setChangeStatus(id);
     },
   },
 };
@@ -61,7 +56,14 @@ section {
 
     span {
       color: var(--gray-placeholder);
-      // text-decoration: line-through
+    }
+
+    .isCompleted {
+      text-decoration: line-through;
+    }
+
+    .bg-isCompleted {
+      background: blue;
     }
 
     .remove {

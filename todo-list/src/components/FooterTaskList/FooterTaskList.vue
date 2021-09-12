@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <p>5 items left</p>
+    <p>{{getTodoList.length}} items left</p>
     <a href="#">all</a>
     <a href="#">Active</a>
     <a href="#">Completed</a>
@@ -9,10 +9,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'FooterTaskList',
+  computed: {
+    ...mapGetters(['getTodoList']),
+  },
 };
+
 </script>
 
 <style scoped lang="scss">

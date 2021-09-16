@@ -18,6 +18,11 @@ export default {
   components: {
     FooterTaskList,
   },
+  data() {
+    return {
+      filterTodos: [],
+    };
+  },
   computed: {
     ...mapGetters([
       'getTodoList',

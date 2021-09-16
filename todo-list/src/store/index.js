@@ -2,22 +2,23 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    todolist: [],
+    todoList: [],
+    filterTodoList: [],
   },
   mutations: {
     SET_TODOLIST(state, newTask) {
-      state.todolist = [...state.todolist, newTask];
+      state.todoList = [...state.todoList, newTask];
     },
     SET_REMOVE_TASK(state, removeTask) {
-      const removeItem = state.todolist.filter((item) => item.id !== removeTask);
-      state.todolist = [...removeItem];
+      const removeItem = state.todoList.filter((item) => item.id !== removeTask);
+      state.todoList = [...removeItem];
     },
     SET_CHANGE_STATUS(state, isCompleted) {
-      const getStatusIsCompleted = state.todolist.map((task) => (task.id === isCompleted ? {
+      const getStatusIsCompleted = state.todoList.map((task) => (task.id === isCompleted ? {
         ...task,
         isCompleted: !task.isCompleted,
       } : task));
-      state.todolist = (getStatusIsCompleted);
+      state.todoList = (getStatusIsCompleted);
     },
   },
   actions: {
@@ -32,6 +33,7 @@ export default createStore({
     },
   },
   getters: {
-    getTodoList: (state) => state.todolist,
+    getTodoList: (state) => state.todoList,
+    getFilterTodoList: (state) => state.filterTodoList,
   },
 });

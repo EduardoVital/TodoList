@@ -1,11 +1,13 @@
 <template>
   <section>
-    <div v-for="task in getTodoList" :key="task.id" class="container-task">
+    <div v-for="task in getFilterTodos" :key="task.id" class="container-task">
       <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)"></button>
       <span v-bind:class="[task.isCompleted ? 'isCompleted' : '']">{{ task.title }}</span>
-      <button class="remove" @click="handleRemoveTask(task.id)">Remover</button>
+      <button class="remove" @click="handleRemoveTask(task.id)">
+        <img src="@/assets/images/icons/icon-cross.svg" alt="Cross icon">
+      </button>
     </div>
-    <FooterTaskList />
+    <FooterTaskList :filter-is-completed="handleFilterIsCompleted" :filter-is-active="handleFilterIsActive" :filter-all="handleFilterAll"/>
   </section>
 </template>
 
@@ -20,13 +22,23 @@ export default {
   },
   data() {
     return {
-      filterTodos: [],
+      filterTodos: 'All',
     };
   },
   computed: {
     ...mapGetters([
       'getTodoList',
+      'getFilterCompleted',
+      'getFilterActive',
     ]),
+    getFilterTodos() {
+      if (this.filterTodos === 'Active') {
+        return this.getFilterActive;
+      } if (this.filterTodos === 'Completed') {
+        return this.getFilterCompleted;
+      }
+      return this.getTodoList;
+    },
   },
   methods: {
     ...mapActions(['setRemoveTask', 'setChangeStatus']),
@@ -36,6 +48,18 @@ export default {
 
     handleSetTaskIsCompleted(id) {
       this.setChangeStatus(id);
+    },
+
+    handleFilterIsCompleted() {
+      this.filterTodos = 'Completed';
+    },
+
+    handleFilterIsActive() {
+      this.filterTodos = 'Active';
+    },
+
+    handleFilterAll() {
+      this.filterTodos = 'All';
     },
   },
 };
@@ -73,6 +97,8 @@ section {
 
     .remove {
       margin-left: auto;
+      background: transparent;
+      border: none;
     }
   }
 }

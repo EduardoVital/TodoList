@@ -5,7 +5,7 @@
       <h1>Todo</h1>
     </div>
     <div>
-      <img src="../../assets/images/icons/icon-moon.svg" alt="icon moon">
+      <img src="@/assets/images/icons/icon-moon.svg" alt="icon moon">
     </div>
   </div>
   <CreateTask />

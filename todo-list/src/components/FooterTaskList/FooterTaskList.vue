@@ -1,20 +1,32 @@
 <template>
   <div class="footer">
     <p>{{getTodoList.length}} items left</p>
-    <a href="#">all</a>
-    <a href="#">Active</a>
-    <a href="#">Completed</a>
-    <a href="#">Clear Completed</a>
+    <a @click.prevent="filterAll()">all</a>
+    <a @click.prevent="filterIsActive()">Active</a>
+    <a @click.prevent="filterIsCompleted()">Completed</a>
+    <a @click.prevent="handleClearCompletedTodos">Clear Completed</a>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'FooterTaskList',
+  props: {
+    filterIsCompleted: Function,
+    filterIsActive: Function,
+    filterAll: Function,
+  },
   computed: {
     ...mapGetters(['getTodoList']),
+  },
+  methods: {
+    ...mapActions(['setClearCompletedTodos']),
+
+    handleClearCompletedTodos() {
+      this.setClearCompletedTodos();
+    },
   },
 };
 
@@ -34,6 +46,7 @@ export default {
   a {
     text-decoration: none;
     color: var(--gray-placeholder);
+    cursor: pointer;
   }
 }
 </style>

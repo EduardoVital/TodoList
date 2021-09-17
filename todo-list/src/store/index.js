@@ -3,7 +3,6 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     todoList: [],
-    filterTodoList: [],
   },
   mutations: {
     SET_TODOLIST(state, newTask) {
@@ -20,6 +19,10 @@ export default createStore({
       } : task));
       state.todoList = (getStatusIsCompleted);
     },
+    SET_CLEAR_COMPLETED(state) {
+      const clearCompletedTodos = state.todoList.filter((todo) => todo.isCompleted !== true);
+      state.todoList = [...clearCompletedTodos];
+    },
   },
   actions: {
     setTodoList({ commit }, newTask) {
@@ -31,9 +34,14 @@ export default createStore({
     setChangeStatus({ commit }, isCompleted) {
       commit('SET_CHANGE_STATUS', isCompleted);
     },
+    setClearCompletedTodos({ commit }) {
+      commit('SET_CLEAR_COMPLETED');
+    },
   },
   getters: {
     getTodoList: (state) => state.todoList,
-    getFilterTodoList: (state) => state.filterTodoList,
+    getFilterCompleted: (state) => state.todoList.filter((todos) => todos.isCompleted === true),
+    getFilterActive: (state) => state.todoList.filter((todos) => todos.isCompleted === false),
+    // getClearCompleted,
   },
 });

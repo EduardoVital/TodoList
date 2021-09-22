@@ -1,13 +1,15 @@
 <template>
-  <section>
-    <div v-for="task in getFilterTodos" :key="task.id" class="container-task">
-      <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)"></button>
-      <span v-bind:class="[task.isCompleted ? 'isCompleted' : '']">{{ task.title }}</span>
-      <button class="remove" @click="handleRemoveTask(task.id)">
-        <img src="@/assets/images/icons/icon-cross.svg" alt="Cross icon">
-      </button>
+  <section :class="[this.toggle ? 'bg-sun' : 'bg-moon']">
+    <div class="container-footer">
+      <div v-for="task in getFilterTodos" :key="task.id" class="container-task">
+        <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)"></button>
+        <span v-bind:class="[task.isCompleted ? 'isCompleted' : '']">{{ task.title }}</span>
+        <button class="remove" @click="handleRemoveTask(task.id)">
+          <img src="@/assets/images/icons/icon-cross.svg" alt="Cross icon">
+        </button>
+      </div>
+      <FooterTaskList :filter-is-completed="handleFilterIsCompleted" :filter-is-active="handleFilterIsActive" :filter-all="handleFilterAll"/>
     </div>
-    <FooterTaskList :filter-is-completed="handleFilterIsCompleted" :filter-is-active="handleFilterIsActive" :filter-all="handleFilterAll"/>
   </section>
 </template>
 
@@ -24,6 +26,13 @@ export default {
     return {
       filterTodos: 'All',
     };
+  },
+  props: {
+    // usar bus event
+    toggle: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     ...mapGetters([
@@ -66,39 +75,49 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.bg-sun {
+  background: #121214;
+}
+.bg-moon {
+  background: var(--background);
+}
 section {
-  background: var(--text-white);
-  max-width: 484px;
-  margin: 0 auto;
-  box-shadow: 0px 0px 3px 0px var(--gray);
-  border-radius: 5px;
-  position: relative;
-  margin-top: -30px;
+  height: 55vh;
 
-  .container-task {
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--gray);
+  .container-footer {
+    background: var(--text-white);
+    max-width: 484px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 3px 0px var(--gray);
+    border-radius: 5px;
+    position: relative;
+    margin-top: -25px;
 
-    span {
-      color: var(--gray-placeholder);
-    }
+    .container-task {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--gray);
 
-    .isCompleted {
-      text-decoration: line-through;
-    }
+      span {
+        color: var(--gray-placeholder);
+      }
 
-    .bg-isCompleted {
-      background: blue;
-    }
+      .isCompleted {
+        text-decoration: line-through;
+      }
 
-    .remove {
-      margin-left: auto;
-      background: transparent;
-      border: none;
+      .bg-isCompleted {
+        background: blue;
+      }
+
+      .remove {
+        margin-left: auto;
+        background: transparent;
+        border: none;
+      }
     }
   }
 }

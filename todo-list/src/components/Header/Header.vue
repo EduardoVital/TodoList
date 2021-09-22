@@ -1,14 +1,15 @@
 <template>
-  <section class="bg">
+  <section :class="[this.toggle ? 'bg-sun' : 'bg-moon' , 'bg']">
     <div class="container flexbox">
-    <div>
-      <h1>Todo</h1>
+      <div>
+        <h1>Todo</h1>
+      </div>
+      <div class="toggle" @click="handleToggleImage">
+        <img v-if="!toggle" src="@/assets/images/icons/icon-moon.svg" alt="icon moon">
+        <img v-if="toggle" src="@/assets/images/icons/icon-sun.svg" alt="icon sun">
+      </div>
     </div>
-    <div>
-      <img src="@/assets/images/icons/icon-moon.svg" alt="icon moon">
-    </div>
-  </div>
-  <CreateTask />
+    <CreateTask />
   </section>
 </template>
 
@@ -17,20 +18,38 @@ import CreateTask from '../CreateTask/CreateTask.vue';
 
 export default {
   name: 'Header',
+  data() {
+    return {
+      toggle: false,
+    };
+  },
   components: {
     CreateTask,
+  },
+  methods: {
+    handleToggleImage() {
+      this.toggle = !this.toggle;
+    },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .bg {
-  background-image: url('../../assets/images/bg-desktop-light.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 50px;
+  height: 45vh;
 }
+
+.bg-moon {
+  background-image: url('../../assets/images/bg-desktop-light.jpg');
+}
+
+.bg-sun {
+  background-image: url('../../assets/images/bg-desktop-dark.jpg');
+}
+
 .flexbox {
   display: flex;
   justify-content: space-between;
@@ -42,6 +61,10 @@ export default {
     letter-spacing: 10px;
     font-size: 40px;
     font-weight: 700;
+  }
+
+  .toggle {
+    cursor: pointer;
   }
 }
 </style>

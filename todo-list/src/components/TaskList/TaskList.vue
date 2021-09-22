@@ -1,5 +1,5 @@
 <template>
-  <section :class="[this.toggle ? 'bg-sun' : 'bg-moon']">
+  <section :class="[this.getToggle ? 'bg-moon' : 'bg-sun']">
     <div class="container-footer">
       <div v-for="task in getFilterTodos" :key="task.id" class="container-task">
         <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)"></button>
@@ -25,20 +25,15 @@ export default {
   data() {
     return {
       filterTodos: 'All',
+      toggle: false,
     };
-  },
-  props: {
-    // usar bus event
-    toggle: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
     ...mapGetters([
       'getTodoList',
       'getFilterCompleted',
       'getFilterActive',
+      'getToggle',
     ]),
     getFilterTodos() {
       if (this.filterTodos === 'Active') {

@@ -1,12 +1,12 @@
 <template>
-  <section :class="[this.toggle ? 'bg-sun' : 'bg-moon' , 'bg']">
+  <section :class="[this.getToggle ? 'bg-sun' : 'bg-moon' , 'bg']">
     <div class="container flexbox">
       <div>
         <h1>Todo</h1>
       </div>
       <div class="toggle" @click="handleToggleImage">
-        <img v-if="!toggle" src="@/assets/images/icons/icon-moon.svg" alt="icon moon">
-        <img v-if="toggle" src="@/assets/images/icons/icon-sun.svg" alt="icon sun">
+        <img v-if="!this.getToggle" src="@/assets/images/icons/icon-moon.svg" alt="icon moon">
+        <img v-if="this.getToggle" src="@/assets/images/icons/icon-sun.svg" alt="icon sun">
       </div>
     </div>
     <CreateTask />
@@ -14,21 +14,26 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import CreateTask from '../CreateTask/CreateTask.vue';
 
 export default {
   name: 'Header',
-  data() {
-    return {
-      toggle: false,
-    };
-  },
+  // data() {
+  //   return {
+  //     toggle: false,
+  //   };
+  // },
   components: {
     CreateTask,
   },
+  computed: {
+    ...mapGetters(['getToggle']),
+  },
   methods: {
+    ...mapActions(['setToggle']),
     handleToggleImage() {
-      this.toggle = !this.toggle;
+      this.setToggle();
     },
   },
 };

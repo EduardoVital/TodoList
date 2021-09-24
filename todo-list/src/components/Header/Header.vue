@@ -19,11 +19,6 @@ import CreateTask from '../CreateTask/CreateTask.vue';
 
 export default {
   name: 'Header',
-  // data() {
-  //   return {
-  //     toggle: false,
-  //   };
-  // },
   components: {
     CreateTask,
   },
@@ -50,7 +45,6 @@ export default {
 .bg-moon {
   background-image: url('../../assets/images/bg-desktop-light.jpg');
 }
-
 .bg-sun {
   background-image: url('../../assets/images/bg-desktop-dark.jpg');
 }
@@ -70,6 +64,18 @@ export default {
 
   .toggle {
     cursor: pointer;
+  }
+}
+
+// media query
+@media (max-width: 720px) {
+  .bg {
+    height: 40vh;
+  }
+}
+@media (max-width: 320px) {
+  .bg {
+    height: 50vh;
   }
 }
 </style>

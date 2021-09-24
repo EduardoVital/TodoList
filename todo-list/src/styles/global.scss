@@ -1,8 +1,18 @@
 :root {
-  --background: #f4f4f3;
+  --background-sun: #e7e5f0;
+  --background-moon: #161722;
+
+  --background-tasklist-sun: #fafafa;
+  --background-tasklist-moon: #25273c;
+
   --gray: #c2c4d5;
+  --blue: #3a7bfd;
+
   --text-white: #fbfbfb;
+  --text-gray: #9394a5;
+
   --gray-placeholder: hsl(235, 19%, 35%);
+  
 }
 
 * {
@@ -13,7 +23,7 @@
 
 body {
   font: 16px 'Josefin Sans', sans-serif;
-  color: #121214;
+  color: var(--background-moon);
 }
 
 input, textarea {
@@ -31,9 +41,33 @@ button, .checkmark {
 }
 
 .checkmark {
-  background-color: transparent;
+  background: transparent;
+  border-radius: 100%;
   padding: 12px;
-  border-radius: 50%;
   border: 1px solid var(--gray);
   margin-right: 10px;
+  position: relative;
+}
+
+.checkmark:hover {
+  background: linear-gradient(#57ddff,#c058f3)
+}
+
+.bg-tasklit-sun {
+  background: var(--background-tasklist-sun);
+}
+ .bg-tasklit-moon {
+  background: var(--background-tasklist-moon);
+}
+
+// media query
+@media (max-width: 720px) {
+  .container {
+    max-width: 320px;
+  }
+}
+@media (max-width: 320px) {
+  .container {
+    max-width: 300px;
+  }
 }

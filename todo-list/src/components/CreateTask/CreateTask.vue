@@ -1,6 +1,6 @@
 <template>
   <div :class="[this.getToggle ? 'bg-tasklit-moon' : 'bg-tasklit-sun', 'create-task']">
-    <button class="checkmark"><div></div></button>
+    <button class="checkmark"></button>
     <input class="input-text" type="text" v-model="task" placeholder="Creating a new todo..." v-on:keyup.enter="handleCreateNewTask" />
   </div>
 </template>

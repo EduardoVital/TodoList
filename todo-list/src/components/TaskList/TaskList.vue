@@ -5,7 +5,9 @@
         <span>No items yet.</span>
       </div>
       <div v-else v-for="task in getFilterTodos" :key="task.id" class="container-task">
-        <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)"></button>
+        <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)">
+          <img v-if=task.isCompleted src="@/assets/images/icons/icon-check.svg" alt="Icon check">
+        </button>
         <span v-bind:class="[task.isCompleted ? 'isCompleted' : '', this.getToggle ? 'text-moon' : 'text-sun']">{{ task.title }}</span>
         <button class="remove" @click="handleRemoveTask(task.id)">
           <img src="@/assets/images/icons/icon-cross.svg" alt="Cross icon">
@@ -28,8 +30,10 @@ export default {
   data() {
     return {
       filterTodos: 'All',
-      toggle: false,
     };
+  },
+  mounted() {
+    // this.handleChangeBodyBg();
   },
   computed: {
     ...mapGetters([
@@ -68,6 +72,14 @@ export default {
     handleFilterAll() {
       this.filterTodos = 'All';
     },
+
+    // handleChangeBodyBg() {
+    //   if (this.getToggle) {
+    //     console.log(this.getToggle);
+    //     return document.body.classList.add('bg-moon');
+    //   }
+    //   return document.body.classList.add('bg-sun');
+    // },
   },
 };
 </script>

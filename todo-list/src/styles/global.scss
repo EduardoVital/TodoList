@@ -24,6 +24,7 @@
 body {
   font: 16px 'Josefin Sans', sans-serif;
   color: var(--background-moon);
+  background: --background-tasklist-sun;
 }
 
 input, textarea {
@@ -43,7 +44,11 @@ button, .checkmark {
 .checkmark {
   background: transparent;
   border-radius: 100%;
-  padding: 12px;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--gray);
   margin-right: 10px;
   position: relative;

@@ -72,6 +72,13 @@ export default {
   .bg {
     height: 40vh;
   }
+
+  .bg-moon {
+  background-image: url('../../assets/images/bg-mobile-light.jpg');
+  }
+  .bg-sun {
+    background-image: url('../../assets/images/bg-mobile-dark.jpg');
+  }
 }
 @media (max-width: 320px) {
   .bg {

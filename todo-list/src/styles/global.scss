@@ -24,7 +24,7 @@
 body {
   font: 16px 'Josefin Sans', sans-serif;
   color: var(--background-moon);
-  background: --background-tasklist-sun;
+  height: 100vh;
 }
 
 input, textarea {
@@ -61,8 +61,15 @@ button, .checkmark {
 .bg-tasklit-sun {
   background: var(--background-tasklist-sun);
 }
- .bg-tasklit-moon {
+.bg-tasklit-moon {
   background: var(--background-tasklist-moon);
+}
+
+.bg-sun {
+  background: var(--background-sun);
+}
+.bg-moon {
+  background: var(--background-moon);
 }
 
 // media query

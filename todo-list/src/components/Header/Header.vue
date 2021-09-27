@@ -25,10 +25,22 @@ export default {
   computed: {
     ...mapGetters(['getToggle']),
   },
+  mounted() {
+    const { body } = document;
+    body.classList.add('bg-sun');
+  },
   methods: {
     ...mapActions(['setToggle']),
     handleToggleImage() {
       this.setToggle();
+      const { body } = document;
+      if (body.classList.contains('bg-sun')) {
+        body.classList.remove('bg-sun');
+        body.classList.add('bg-moon');
+      } else {
+        body.classList.remove('bg-moon');
+        body.classList.add('bg-sun');
+      }
     },
   },
 };
@@ -39,7 +51,6 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 50px;
-  height: 45vh;
 }
 
 .bg-moon {

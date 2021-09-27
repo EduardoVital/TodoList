@@ -66,6 +66,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 30px;
 
   .filter {
     display: flex;
@@ -114,6 +115,7 @@ export default {
   .footer {
     .filter {
       width: 300px;
+      margin-bottom: 30px;
     }
   }
 }

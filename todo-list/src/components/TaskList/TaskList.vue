@@ -1,5 +1,5 @@
 <template>
-  <section :class="[this.getToggle ? 'bg-moon' : 'bg-sun']">
+  <section>
     <div :class="[this.getToggle ? 'bg-tasklit-moon' : 'bg-tasklit-sun' ,'container-footer']">
       <div v-if="!getFilterTodos.length" class="container-empty-task">
         <span>No items yet.</span>
@@ -31,9 +31,6 @@ export default {
     return {
       filterTodos: 'All',
     };
-  },
-  mounted() {
-    // this.handleChangeBodyBg();
   },
   computed: {
     ...mapGetters([
@@ -72,28 +69,12 @@ export default {
     handleFilterAll() {
       this.filterTodos = 'All';
     },
-
-    // handleChangeBodyBg() {
-    //   if (this.getToggle) {
-    //     console.log(this.getToggle);
-    //     return document.body.classList.add('bg-moon');
-    //   }
-    //   return document.body.classList.add('bg-sun');
-    // },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.bg-sun {
-  background: var(--background-sun);
-}
-.bg-moon {
-  background: var(--background-moon);
-}
 section {
-  height: 55vh;
-
   .container-footer {
     color: var(--text-gray);
     max-width: 484px;
@@ -101,6 +82,7 @@ section {
     border-radius: 5px;
     position: relative;
     margin-top: -25px;
+    min-height: 10px;
 
     .container-task {
       padding: 30px 20px;

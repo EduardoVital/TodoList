@@ -82,7 +82,7 @@ section {
     border-radius: 5px;
     position: relative;
     margin-top: -25px;
-    min-height: 10px;
+    min-height: 30px;
 
     .container-task {
       padding: 30px 20px;

@@ -52,14 +52,14 @@ export default {
   max-width: 484px;
   margin: 0 auto;
   width: 100%;
-  padding: 15px;
+  padding: 15px 20px;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 
   .input-text {
-    width: 100%;
+    width: 90%;
     outline: none;
     border: none;
     font-size: 16px;

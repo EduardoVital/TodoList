@@ -4,15 +4,17 @@
       <div v-if="!getFilterTodos.length" class="container-empty-task">
         <span>No items yet.</span>
       </div>
-      <div v-else v-for="task in getFilterTodos" :key="task.id" class="container-task">
-        <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)">
-          <img v-if=task.isCompleted src="@/assets/images/icons/icon-check.svg" alt="Icon check">
-        </button>
-        <span v-bind:class="[task.isCompleted ? 'isCompleted' : '', this.getToggle ? 'text-moon' : 'text-sun']">{{ task.title }}</span>
-        <button class="remove" @click="handleRemoveTask(task.id)">
-          <img src="@/assets/images/icons/icon-cross.svg" alt="Cross icon">
-        </button>
-      </div>
+      <draggable v-else :list="getFilterTodos">
+        <div v-for="task in getFilterTodos" :key="task.id" class="container-task">
+          <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)">
+            <img v-if=task.isCompleted src="@/assets/images/icons/icon-check.svg" alt="Icon check">
+          </button>
+          <span v-bind:class="[task.isCompleted ? 'isCompleted' : '', this.getToggle ? 'text-moon' : 'text-sun']">{{ task.title }}</span>
+          <button class="remove" @click="handleRemoveTask(task.id)">
+            <img src="@/assets/images/icons/icon-cross.svg" alt="Cross icon">
+          </button>
+        </div>
+      </draggable>
       <FooterTaskList :filter-is-completed="handleFilterIsCompleted" :filter-is-active="handleFilterIsActive" :filter-all="handleFilterAll"/>
     </div>
   </section>
@@ -20,12 +22,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import { VueDraggableNext } from 'vue-draggable-next';
 import FooterTaskList from '../FooterTaskList/FooterTaskList.vue';
 
 export default {
   name: 'TaskList',
   components: {
     FooterTaskList,
+    draggable: VueDraggableNext,
   },
   data() {
     return {

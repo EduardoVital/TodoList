@@ -1,5 +1,5 @@
 <template>
-  <div v-if=!isMobile class="footer">
+  <div class="footer desktop">
     <p>{{getTodoList.length}} items left</p>
     <div class="filter">
       <a class="link" @click.prevent="filterAll()">All</a>
@@ -8,7 +8,7 @@
     </div>
     <a @click.prevent="handleClearCompletedTodos">Clear Completed</a>
   </div>
-  <div v-else class="footer">
+  <div class="footer mobile">
     <div class="infos">
       <p>{{getTodoList.length}} items left</p>
       <a @click.prevent="handleClearCompletedTodos">Clear Completed</a>
@@ -26,11 +26,6 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'FooterTaskList',
-  data() {
-    return {
-      isMobile: false,
-    };
-  },
   props: {
     filterIsCompleted: Function,
     filterIsActive: Function,
@@ -84,6 +79,10 @@ export default {
   }
 }
 
+.mobile {
+  display: none;
+}
+
 // media query
 @media (max-width: 720px) {
   .footer {
@@ -104,18 +103,25 @@ export default {
       width: 320px;
       justify-content: center;
       font-size: 18px;
+      left: 0;
 
       a {
         margin: 0 5px;
       }
     }
   }
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
 }
 @media (max-width: 320px ) {
   .footer {
     .filter {
       width: 300px;
-      margin-bottom: 30px;
     }
   }
 }

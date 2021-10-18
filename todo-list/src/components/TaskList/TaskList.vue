@@ -17,6 +17,7 @@
       </draggable>
       <FooterTaskList :filter-is-completed="handleFilterIsCompleted" :filter-is-active="handleFilterIsActive" :filter-all="handleFilterAll"/>
     </div>
+    <p>Drag and drop to reorder list</p>
   </section>
 </template>
 
@@ -131,6 +132,11 @@ section {
       color: var(--text-gray);
     }
   }
+
+  p {
+    text-align: center;
+    color: var(--gray-placeholder);
+  }
 }
 
 @media (max-width: 720px) {
@@ -139,12 +145,16 @@ section {
 
     .container-footer {
       max-width: 320px;
-      margin-top: -40px;
+      margin-top: -25px;
 
       .container-task, .container-empty-task {
         padding: 10px;
         font-size: 14px;
       }
+    }
+
+    p {
+      margin-top: 100px;
     }
   }
 }

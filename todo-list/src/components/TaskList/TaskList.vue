@@ -4,8 +4,8 @@
       <div v-if="!getFilterTodos.length" class="container-empty-task">
         <span>No items yet.</span>
       </div>
-      <draggable v-else :list="getFilterTodos">
-        <div v-for="task in getFilterTodos" :key="task.id" class="container-task">
+      <draggable v-else :list="getFilterTodos" @start="drag = true" @end="drag = false" >
+        <div v-for="task in getFilterTodos" :key="task.id" class="container-task" :name="!drag ? 'flip-list' : null">
           <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)">
             <img v-if=task.isCompleted src="@/assets/images/icons/icon-check.svg" alt="Icon check">
           </button>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       filterTodos: 'All',
+      drag: false,
     };
   },
   computed: {

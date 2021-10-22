@@ -4,7 +4,7 @@
       <div v-if="!getFilterTodos.length" class="container-empty-task">
         <span>No items yet.</span>
       </div>
-      <draggable v-else :list="getFilterTodos" @start="drag = true" @end="drag = false" >
+      <draggable v-else :list="getFilterTodos" @start="drag = true" @end="drag = false" v-bind="dragOptions">
         <div v-for="task in getFilterTodos" :key="task.id" class="container-task" :name="!drag ? 'flip-list' : null">
           <button v-bind:class="[task.isCompleted ? 'bg-isCompleted' : '' , 'checkmark']" @click="handleSetTaskIsCompleted(task.id)">
             <img v-if=task.isCompleted src="@/assets/images/icons/icon-check.svg" alt="Icon check">
@@ -52,6 +52,15 @@ export default {
         return this.getFilterCompleted;
       }
       return this.getTodoList;
+    },
+
+    dragOptions() {
+      return {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost',
+      };
     },
   },
   methods: {
@@ -137,6 +146,19 @@ section {
   p {
     text-align: center;
     color: var(--gray-placeholder);
+  }
+
+  .flip-list-move {
+  transition: transform 0.5s;
+  }
+
+  .no-move {
+    transition: transform 0s;
+  }
+
+  .ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
   }
 }
 

@@ -72,10 +72,22 @@ button, .checkmark {
   background: var(--background-moon);
 }
 
+.attribution {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 14px;
+}
+
 // media query
 @media (max-width: 720px) {
   .container {
     max-width: 320px;
+  }
+
+  .attribution {
+    max-width: 320px;
+    margin: 0 auto;
+    margin-top: -50px;
   }
 }
 @media (max-width: 320px) {

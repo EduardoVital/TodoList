@@ -1,5 +1,5 @@
 # Frontend Mentor - Todo app
-link to acess the project -> https://todo-app-alpha-lake.vercel.app/
+Link to acess the project -> https://todo-app-alpha-lake.vercel.app/
 
 ![Design preview for the Todo app coding challenge](./src/assets/images/desktop-preview.jpg)
 

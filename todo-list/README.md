@@ -96,7 +96,7 @@ We love receiving feedback! We're always looking to improve our challenges and o
 
 This challenge is completely free. Please share it with anyone who will find it useful for practice.
 
-### You can acess de project in the link below
+### You can acess the project in the link below
 ```
 https://todo-app-alpha-lake.vercel.app/
 ```
